@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Youssef Testing.."
+                echo "Testing the github webhook.."
 
             }
         }
