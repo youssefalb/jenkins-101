@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing the github webhook.."
+                echo "Testing the git polling.."
 
             }
         }
