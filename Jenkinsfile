@@ -21,7 +21,7 @@ pipeline {
         stages {
           stage('Build & Test') {
             steps {
-              echo "Running on ${OS} with JDK ${JDK}"
+              echo "Test Running on ${OS} with JDK ${JDK}"
               sh 'mvn test'
             }
           }
