@@ -30,9 +30,11 @@ pipeline {
         // Optional filtering logic (controls which combinations are allowed)
         when {
           expression { 
-            (OS == 'linux' && JDK == '11') || (OS == 'windows' && JDK == '8') 
+            println "Filtering combination: OS=${OS}, JDK=${JDK}"
+            (OS == 'linux' && JDK == '11') || (OS == 'windows' && JDK == '8')
           }
         }
+
       }
     }
   }
