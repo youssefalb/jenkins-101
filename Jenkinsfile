@@ -27,12 +27,12 @@ pipeline {
           }
         }
 
-        // Optional filtering logic (controls which combinations are allowed)
-        when {
-          expression { 
-            (OS == 'linux' && JDK == '11') || (OS == 'windows' && JDK == '8') 
-          }
-        }
+        // // Optional filtering logic (controls which combinations are allowed)
+        // when {
+        //   expression { 
+        //     (OS == 'linux' && JDK == '11') || (OS == 'windows' && JDK == '8') 
+        //   }
+        // }
       }
     }
   }
