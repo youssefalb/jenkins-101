@@ -1,24 +1,39 @@
 pipeline {
-     agent any
-    triggers {
-        pollSCM '* * * * *'
-    }
-    stages {
-        stage('Build') {
-            steps {
-                echo "Building.."
-            }
+  agent none  // No global agent. Each matrix combination will use its own.
+  
+  stages {
+    stage('Matrix Example') {
+      matrix {
+        axes {
+          axis {
+            name 'OS'
+            values 'linux', 'windows'
+          }
+          axis {
+            name 'JDK'
+            values '8', '11'
+          }
         }
-        stage('Test') {
-            steps {
-                echo "Testing the git polling.."
 
-            }
-        }
-        stage('Deliver') {
+        // Agent section inside matrix — assigns the job to a node with this label.
+        agent { label "${OS}" }
+
+        stages {
+          stage('Build & Test') {
             steps {
-                echo 'Deliver....'
+              echo "Running on ${OS} with JDK ${JDK}"
+              sh 'mvn test'
             }
+          }
         }
+
+        // Optional filtering logic (controls which combinations are allowed)
+        when {
+          expression { 
+            (OS == 'linux' && JDK == '11') || (OS == 'windows' && JDK == '8') 
+          }
+        }
+      }
     }
+  }
 }
